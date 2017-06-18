@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,15 @@ using System.Windows.Forms;
 
 namespace VBoxVdiManager
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form,
+        IComparer<VdiFileInfo>
     {
+        private Dictionary<string, VdiFileInfo> dicVdisByPath
+            = new Dictionary<string, VdiFileInfo>(StringComparer.InvariantCultureIgnoreCase);
+
+        private Dictionary<Guid, VdiFileInfo> dicVdisByGuid
+            = new Dictionary<Guid, VdiFileInfo>();
+
         public Form1()
         {
             InitializeComponent();
@@ -232,6 +240,47 @@ namespace VBoxVdiManager
         {
             for (int it = 0; it < this.lstVboxs.Items.Count; it++)
                 this.lstVboxs.SetItemChecked(it, false);
+        }
+
+        private void lstVdis_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            var g = e.Graphics;
+            var lb = (ListBox)sender;
+
+            var size = g.MeasureString(
+                "" + lb.Items[e.Index],
+                lb.Font,
+                e.Bounds.Size,
+                StringFormat.GenericTypographic);
+
+            var width = size.Width + 16;
+
+            e.DrawBackground();
+            e.DrawFocusRectangle();
+            e.Graphics.DrawString(
+                "" + lb.Items[e.Index],
+                lb.Font,
+                Brushes.Red,
+                e.Bounds.X,
+                e.Bounds.Y);
+
+        }
+
+        int IComparer<VdiFileInfo>.Compare(VdiFileInfo x, VdiFileInfo y)
+        {
+            var px = x.GetPath(this.GetParent).Select(v => v.UUID).Reverse();
+            var py = y.GetPath(this.GetParent).Select(v => v.UUID).Reverse();
+
+            var res = EnumerableComparer<Guid>.Default.Compare(px, py);
+
+            return res;
+        }
+
+        private VdiFileInfo GetParent(VdiFileInfo v)
+        {
+            VdiFileInfo res;
+            this.dicVdisByGuid.TryGetValue(v.LinkUUID, out res);
+            return res;
         }
     }
 }

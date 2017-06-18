@@ -9,6 +9,7 @@ namespace VBoxVdiManager
     {
         public VdiFileInfo VdiInfo { get; set; }
         public string FilePath { get; set; }
+        public int Level { get; set; }
 
         public override string ToString()
         {

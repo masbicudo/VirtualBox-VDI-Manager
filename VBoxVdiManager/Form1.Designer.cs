@@ -91,6 +91,7 @@
             // lstVdis
             // 
             this.lstVdis.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstVdis.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstVdis.FormattingEnabled = true;
             this.lstVdis.IntegralHeight = false;
             this.lstVdis.Location = new System.Drawing.Point(0, 0);
@@ -98,6 +99,7 @@
             this.lstVdis.Size = new System.Drawing.Size(264, 384);
             this.lstVdis.Sorted = true;
             this.lstVdis.TabIndex = 3;
+            this.lstVdis.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstVdis_DrawItem);
             this.lstVdis.SelectedIndexChanged += new System.EventHandler(this.lstVdis_SelectedIndexChanged);
             // 
             // lstVboxs
