@@ -1,4 +1,4 @@
-﻿namespace VBoxVdiManager
+﻿namespace VBoxVdiManager.Model
 {
     public struct VdiVersion
     {

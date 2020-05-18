@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 
-namespace VBoxVdiManager
+namespace VBoxVdiManager.Model
 {
     public class VdiFileInfo
     {

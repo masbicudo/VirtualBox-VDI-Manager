@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace VBoxVdiManager
+namespace VBoxVdiManager.Model
 {
     public class MediaRegistry
     {

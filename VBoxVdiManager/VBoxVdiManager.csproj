@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,8 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachedDevice.cs" />
-    <Compile Include="DVDImage.cs" />
+    <Compile Include="Model\AttachedDevice.cs" />
+    <Compile Include="Model\DVDImage.cs" />
     <Compile Include="EnumerableComparer.cs" />
     <Compile Include="ExpandableCollectionConverter.cs" />
     <Compile Include="ExpandableCollectionPropertyDescriptor.cs" />
@@ -54,19 +57,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HardDisk.cs" />
-    <Compile Include="MediaRegistry.cs" />
+    <Compile Include="Model\HardDisk.cs" />
+    <Compile Include="Model\MediaRegistry.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StorageController.cs" />
+    <Compile Include="Model\StorageController.cs" />
     <Compile Include="Vbox.cs" />
-    <Compile Include="VboxFileInfo.cs" />
+    <Compile Include="Model\VboxFileInfo.cs" />
     <Compile Include="VboxListItem.cs" />
     <Compile Include="Vdi.cs" />
-    <Compile Include="VdiFileInfo.cs" />
+    <Compile Include="Model\VdiFileInfo.cs" />
     <Compile Include="VdiListItem.cs" />
-    <Compile Include="VdiVersion.cs" />
+    <Compile Include="Model\VdiVersion.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -79,6 +82,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

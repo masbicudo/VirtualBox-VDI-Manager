@@ -2,6 +2,7 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
+using VBoxVdiManager.Model;
 
 namespace VBoxVdiManager
 {

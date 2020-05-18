@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using VBoxVdiManager.Model;
 
 namespace VBoxVdiManager
 {
     public class VdiListItem :
         IComparable<VdiListItem>
     {
-        public VdiFileInfo VdiInfo { get; set; }
+        public object VdiInfo { get; set; }
         public string FilePath { get; set; }
         public int Level { get; set; }
 

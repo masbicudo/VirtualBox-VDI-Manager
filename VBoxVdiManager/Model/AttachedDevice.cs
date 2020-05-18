@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VBoxVdiManager
+namespace VBoxVdiManager.Model
 {
     public class AttachedDevice
     {

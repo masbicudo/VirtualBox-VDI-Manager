@@ -2,41 +2,49 @@
 using System.Collections.Specialized;
 using System.IO;
 using System.Text;
+using VBoxVdiManager.Model;
 
 namespace VBoxVdiManager
 {
     public static class Vdi
     {
-        public static VdiFileInfo ReadVdi(string fileName)
+        public static object ReadVdi(string fileName)
         {
             var vdiInfo = new VdiFileInfo();
-            using (var fs = File.Open(fileName, FileMode.Open))
+            try
             {
-                vdiInfo.InitialText = fs.ReadAsciiString(64);
-                vdiInfo.ImageSignature = fs.ReadInt();
-                vdiInfo.Version = new VdiVersion(
-                    fs.ReadShort(),
-                    fs.ReadShort());
-                vdiInfo.HeaderSize = fs.ReadInt();
-                vdiInfo.ImageType = fs.ReadInt();
-                vdiInfo.ImageFlags = new BitVector32(fs.ReadInt());
-                vdiInfo.ImageDescritpion = fs.ReadUtf8String(0x154 - 0x54);
-                vdiInfo.OffsetBlocks = fs.ReadInt();
-                vdiInfo.OffsetData = fs.ReadInt();
-                vdiInfo.Cylinders = fs.ReadInt();
-                vdiInfo.Heads = fs.ReadInt();
-                vdiInfo.Sectors = fs.ReadInt();
-                vdiInfo.SectorSize = fs.ReadInt();
-                fs.ReadInt();
-                vdiInfo.DiskSize = fs.ReadLong();
-                vdiInfo.BlockSize = fs.ReadInt();
-                vdiInfo.BlockExtraData = fs.ReadInt();
-                vdiInfo.BlocksInHDD = fs.ReadInt();
-                vdiInfo.BlocksAllocated = fs.ReadInt();
-                vdiInfo.UUID = fs.ReadGuid();
-                vdiInfo.SnapshotUUID = fs.ReadGuid();
-                vdiInfo.LinkUUID = fs.ReadGuid();
-                vdiInfo.ParentUUID = fs.ReadGuid();
+                using (var fs = File.Open(fileName, FileMode.Open))
+                {
+                    vdiInfo.InitialText = fs.ReadAsciiString(64);
+                    vdiInfo.ImageSignature = fs.ReadInt();
+                    vdiInfo.Version = new VdiVersion(
+                        fs.ReadShort(),
+                        fs.ReadShort());
+                    vdiInfo.HeaderSize = fs.ReadInt();
+                    vdiInfo.ImageType = fs.ReadInt();
+                    vdiInfo.ImageFlags = new BitVector32(fs.ReadInt());
+                    vdiInfo.ImageDescritpion = fs.ReadUtf8String(0x154 - 0x54);
+                    vdiInfo.OffsetBlocks = fs.ReadInt();
+                    vdiInfo.OffsetData = fs.ReadInt();
+                    vdiInfo.Cylinders = fs.ReadInt();
+                    vdiInfo.Heads = fs.ReadInt();
+                    vdiInfo.Sectors = fs.ReadInt();
+                    vdiInfo.SectorSize = fs.ReadInt();
+                    fs.ReadInt();
+                    vdiInfo.DiskSize = fs.ReadLong();
+                    vdiInfo.BlockSize = fs.ReadInt();
+                    vdiInfo.BlockExtraData = fs.ReadInt();
+                    vdiInfo.BlocksInHDD = fs.ReadInt();
+                    vdiInfo.BlocksAllocated = fs.ReadInt();
+                    vdiInfo.UUID = fs.ReadGuid();
+                    vdiInfo.SnapshotUUID = fs.ReadGuid();
+                    vdiInfo.LinkUUID = fs.ReadGuid();
+                    vdiInfo.ParentUUID = fs.ReadGuid();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
             return vdiInfo;
